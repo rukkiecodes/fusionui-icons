@@ -6,7 +6,7 @@ across web and mobile.
 
 🔗 **Live site:** https://rukkiecodes.github.io/fusionui-icons/
 
-![icons](https://img.shields.io/badge/icons-737-6366f1)
+![icons](https://img.shields.io/badge/icons-737-195bff)
 
 ## Features
 
@@ -15,7 +15,7 @@ across web and mobile.
 - 🎨 **Theme aware** — follows your **system** theme by default; switch to Light or Dark anytime.
 - 📋 **One-click copy** in four formats:
   - **SVG (HTML)** — paste straight into any page
-  - **Vue** — `<FIcon :icon="..." />` with `@fusionui/icons`
+  - **Vue** — `<FIcon :icon="..." />` with `@rukkiecodes/icons`
   - **JSX / React** — a ready-to-use component
   - **Name** — the kebab-case icon id
 

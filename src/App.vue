@@ -137,8 +137,8 @@ function snippets(icon) {
       lang: 'vue',
       code:
         `<` + `script setup>\n` +
-        `import { ${icon.p} } from '@fusionui/icons'\n` +
-        `import { FIcon } from '@fusionui/vue'\n` +
+        `import { ${icon.p} } from '@rukkiecodes/icons'\n` +
+        `import { FIcon } from '@rukkiecodes/vue'\n` +
         `<\/script>\n\n` +
         `<template>\n  <FIcon :icon="${icon.p}" />\n<\/template>`,
     },
@@ -223,7 +223,7 @@ onBeforeUnmount(() => {
     <header class="topbar">
       <div class="brand">
         <span class="brand__mark" aria-hidden="true">
-          <Glyph name="hexagon" />
+          <Glyph name="feather" />
         </span>
         <div class="brand__text">
           <h1>FusionUI <span>Icons</span></h1>

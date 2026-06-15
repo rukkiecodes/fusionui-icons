@@ -1,45 +1,41 @@
+/* FusionUI Icons — styled to match the FusionUI framework (blue #195bff,
+   SF-Pro/Apple typography, FusionUI surfaces, FField inputs, FDialog modal). */
+
 :root {
-  --accent: #6366f1;
-  --accent-strong: #4f46e5;
-  --radius: 14px;
-  --radius-sm: 10px;
+  --primary: 25, 91, 255; /* FusionUI --fui-theme-primary (#195bff) */
+  --success: 33, 168, 117;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
   --maxw: 1240px;
-  --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
-    sans-serif;
-  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --font:
+    -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
+  --mono: 'SF Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+  --shadow-lift: 0 5px 30px 0 rgba(0, 0, 0, 0.22);
 }
 
 /* ---------- light (default) ---------- */
 :root,
 :root[data-theme='light'] {
-  --bg: #f6f7fb;
-  --bg-grad: radial-gradient(1200px 600px at 80% -10%, #eef0ff 0%, transparent 60%);
-  --surface: #ffffff;
-  --surface-2: #f1f2f7;
-  --border: #e6e8ef;
-  --border-strong: #d3d7e3;
-  --text: #1a1d29;
-  --text-dim: #5b6072;
-  --text-faint: #8a8fa3;
-  --shadow: 0 1px 2px rgba(20, 23, 40, 0.06), 0 12px 28px -12px rgba(20, 23, 40, 0.18);
-  --code-bg: #0f1117;
-  --code-text: #e7e9f3;
+  --bg: 255, 255, 255;
+  --surface: 255, 255, 255;
+  --surface-2: 244, 247, 248; /* #f4f7f8 — FusionUI surface-2 */
+  --surface-3: 236, 240, 242;
+  --on-surface: 44, 62, 80; /* #2c3e50 — FusionUI on-surface */
+  --shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.05); /* FusionUI --fui-shadow-rest */
+  --code-bg: 26, 27, 38; /* docs code panel #1a1b26 */
 }
 
 /* ---------- dark ---------- */
 :root[data-theme='dark'] {
-  --bg: #0b0d12;
-  --bg-grad: radial-gradient(1200px 600px at 80% -10%, #1a1c3a 0%, transparent 55%);
-  --surface: #14171f;
-  --surface-2: #1b1f2a;
-  --border: #242936;
-  --border-strong: #313748;
-  --text: #eef0f6;
-  --text-dim: #9aa1b4;
-  --text-faint: #6b7185;
-  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 16px 40px -16px rgba(0, 0, 0, 0.65);
-  --code-bg: #0a0c11;
-  --code-text: #e7e9f3;
+  --bg: 24, 25, 28; /* docs content #18191c */
+  --surface: 38, 40, 44; /* #26282c — FusionUI surface */
+  --surface-2: 28, 30, 33; /* recessed #1c1e21 so fields/cells read on the panel */
+  --surface-3: 22, 23, 26;
+  --on-surface: 255, 255, 255;
+  --shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.4);
+  --code-bg: 22, 23, 31;
 }
 
 * {
@@ -53,12 +49,28 @@ html {
 body {
   margin: 0;
   font-family: var(--font);
-  color: var(--text);
-  background: var(--bg);
-  background-image: var(--bg-grad);
-  background-attachment: fixed;
+  letter-spacing: -0.011em;
+  color: rgba(var(--on-surface), 0.92);
+  background: rgb(var(--bg));
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+}
+
+/* One uniform thin scrollbar that blends with the background (FusionUI docs). */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--on-surface), 0.2) transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(var(--on-surface), 0.18);
+  border: 3px solid transparent;
+  border-radius: 10px;
+  background-clip: padding-box;
 }
 
 .sr-only {
@@ -76,7 +88,7 @@ body {
 .page {
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: 0 20px 64px;
+  padding: 0 24px 80px;
 }
 
 /* ------------------------------------------------------------- top bar */
@@ -86,7 +98,7 @@ body {
   justify-content: space-between;
   gap: 16px;
   flex-wrap: wrap;
-  padding: 26px 0 18px;
+  padding: 30px 0 20px;
 }
 
 .brand {
@@ -100,10 +112,10 @@ body {
   place-items: center;
   width: 46px;
   height: 46px;
-  border-radius: 13px;
+  border-radius: 14px;
   color: #fff;
-  background: linear-gradient(135deg, var(--accent), #8b5cf6);
-  box-shadow: 0 8px 20px -8px var(--accent);
+  background: rgb(var(--primary));
+  box-shadow: 0 8px 22px -8px rgba(var(--primary), 0.7);
 }
 .brand__mark svg {
   width: 24px;
@@ -112,17 +124,17 @@ body {
 
 .brand__text h1 {
   margin: 0;
-  font-size: 1.3rem;
-  letter-spacing: -0.02em;
-  font-weight: 750;
+  font-size: 1.32rem;
+  letter-spacing: -0.025em;
+  font-weight: 700;
 }
 .brand__text h1 span {
-  color: var(--accent);
+  color: rgb(var(--primary));
 }
 .brand__text p {
-  margin: 2px 0 0;
+  margin: 3px 0 0;
   font-size: 0.82rem;
-  color: var(--text-dim);
+  color: rgba(var(--on-surface), 0.55);
 }
 
 .topbar__actions {
@@ -131,14 +143,13 @@ body {
   gap: 12px;
 }
 
+/* Segmented theme control (FusionUI surface + primary active). */
 .theme {
   display: inline-flex;
   padding: 4px;
   gap: 2px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  box-shadow: var(--shadow);
+  background: rgb(var(--surface-2));
+  border-radius: var(--radius-md);
 }
 .theme__btn {
   display: grid;
@@ -146,22 +157,23 @@ body {
   width: 36px;
   height: 32px;
   border: 0;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   background: transparent;
-  color: var(--text-dim);
+  color: rgba(var(--on-surface), 0.6);
   cursor: pointer;
-  transition: background 0.15s, color 0.15s;
+  transition: all 0.2s ease;
 }
 .theme__btn svg {
   width: 17px;
   height: 17px;
 }
 .theme__btn:hover {
-  color: var(--text);
+  color: rgba(var(--on-surface), 0.95);
 }
 .theme__btn.is-active {
-  background: var(--accent);
+  background: rgb(var(--primary));
   color: #fff;
+  box-shadow: 0 4px 12px -4px rgba(var(--primary), 0.6);
 }
 
 .ghlink {
@@ -169,19 +181,19 @@ body {
   align-items: center;
   gap: 8px;
   height: 40px;
-  padding: 0 14px;
-  border-radius: 11px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--text);
+  padding: 0 16px;
+  border-radius: var(--radius-md);
+  border: 0;
+  background: rgb(var(--surface-2));
+  color: rgba(var(--on-surface), 0.92);
   text-decoration: none;
   font-size: 0.86rem;
   font-weight: 600;
-  box-shadow: var(--shadow);
-  transition: border-color 0.15s, transform 0.1s;
+  transition: all 0.2s ease;
 }
 .ghlink:hover {
-  border-color: var(--border-strong);
+  background: rgba(var(--primary), 0.12);
+  color: rgb(var(--primary));
   transform: translateY(-1px);
 }
 .ghlink svg {
@@ -195,7 +207,7 @@ body {
   top: 0;
   z-index: 20;
   padding: 14px 0 12px;
-  background: linear-gradient(var(--bg) 70%, transparent);
+  background: linear-gradient(rgb(var(--bg)) 72%, transparent);
 }
 .search {
   position: relative;
@@ -204,31 +216,38 @@ body {
 }
 .search__icon {
   position: absolute;
-  left: 16px;
+  left: 18px;
   width: 20px;
   height: 20px;
-  color: var(--text-dim);
+  color: rgba(var(--on-surface), 0.45);
   pointer-events: none;
+  z-index: 1;
+  transition: color 0.2s ease;
 }
+.search:focus-within .search__icon {
+  color: rgb(var(--primary));
+}
+/* FField default variant: surface-2 fill, transparent border, on focus the
+   fill darkens and a colored bottom border slides in (no glow ring). */
 .search__input {
   width: 100%;
-  height: 54px;
-  padding: 0 48px 0 48px;
+  height: 56px;
+  padding: 0 52px;
+  font-family: var(--font);
   font-size: 1rem;
-  color: var(--text);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  color: rgba(var(--on-surface), 0.92);
+  background: rgb(var(--surface-2));
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
   outline: none;
-  box-shadow: var(--shadow);
-  transition: border-color 0.15s, box-shadow 0.15s;
+  transition: all 0.2s ease;
 }
 .search__input::placeholder {
-  color: var(--text-dim);
+  color: rgba(var(--on-surface), 0.4);
 }
 .search__input:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.18);
+  background: rgb(var(--surface-3));
+  border-bottom-color: rgb(var(--primary));
 }
 .search__input::-webkit-search-decoration,
 .search__input::-webkit-search-cancel-button {
@@ -239,28 +258,30 @@ body {
   right: 10px;
   display: grid;
   place-items: center;
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border: 0;
-  border-radius: 8px;
-  background: var(--surface-2);
-  color: var(--text-dim);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: rgba(var(--on-surface), 0.5);
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 .search__clear:hover {
-  color: var(--text);
+  background: rgba(var(--on-surface), 0.08);
+  color: rgba(var(--on-surface), 0.9);
 }
 .search__clear svg {
   width: 16px;
   height: 16px;
 }
 .results {
-  margin: 12px 2px 0;
+  margin: 14px 4px 0;
   font-size: 0.84rem;
-  color: var(--text-dim);
+  color: rgba(var(--on-surface), 0.55);
 }
 .results strong {
-  color: var(--text);
+  color: rgba(var(--on-surface), 0.92);
   font-weight: 650;
 }
 
@@ -270,7 +291,7 @@ body {
 }
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(106px, 1fr));
   gap: 12px;
 }
 .cell {
@@ -279,36 +300,37 @@ body {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 18px 8px 12px;
-  min-height: 104px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  background: var(--surface);
-  color: var(--text);
+  padding: 18px 8px 13px;
+  min-height: 106px;
+  border: 1px solid rgba(var(--on-surface), 0.08);
+  border-radius: var(--radius-md);
+  background: rgb(var(--surface));
+  color: rgba(var(--on-surface), 0.9);
   cursor: pointer;
-  transition: border-color 0.15s, transform 0.1s, box-shadow 0.15s;
+  transition: all 0.18s ease;
 }
 .cell:hover {
-  border-color: var(--accent);
+  border-color: rgba(var(--primary), 0.5);
   transform: translateY(-2px);
-  box-shadow: 0 10px 24px -14px var(--accent);
+  box-shadow: 0 12px 26px -16px rgba(var(--primary), 0.8);
 }
 .cell:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid rgb(var(--primary));
   outline-offset: 2px;
 }
 .cell__icon svg {
   width: 26px;
   height: 26px;
-  color: var(--text);
+  color: rgba(var(--on-surface), 0.85);
+  transition: color 0.18s ease;
 }
 .cell:hover .cell__icon svg {
-  color: var(--accent);
+  color: rgb(var(--primary));
 }
 .cell__name {
   max-width: 100%;
   font-size: 0.7rem;
-  color: var(--text-dim);
+  color: rgba(var(--on-surface), 0.5);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -319,7 +341,7 @@ body {
   place-items: center;
   gap: 12px;
   padding: 80px 0;
-  color: var(--text-dim);
+  color: rgba(var(--on-surface), 0.5);
   text-align: center;
 }
 .empty svg {
@@ -334,7 +356,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   gap: 6px;
-  margin-top: 32px;
+  margin-top: 34px;
 }
 .pager__btn {
   display: grid;
@@ -342,89 +364,93 @@ body {
   min-width: 40px;
   height: 40px;
   padding: 0 6px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--surface);
-  color: var(--text);
+  border: 0;
+  border-radius: var(--radius-md);
+  background: rgb(var(--surface-2));
+  color: rgba(var(--on-surface), 0.9);
   font-size: 0.88rem;
   font-weight: 600;
   cursor: pointer;
-  transition: border-color 0.15s, background 0.15s, color 0.15s;
+  transition: all 0.18s ease;
 }
 .pager__btn svg {
   width: 17px;
   height: 17px;
 }
 .pager__btn:hover:not(:disabled):not(.is-gap) {
-  border-color: var(--accent);
-  color: var(--accent);
+  background: rgba(var(--primary), 0.12);
+  color: rgb(var(--primary));
 }
 .pager__btn:disabled {
   opacity: 0.4;
   cursor: default;
 }
 .pager__num.is-active {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: rgb(var(--primary));
   color: #fff;
+  box-shadow: 0 4px 12px -4px rgba(var(--primary), 0.6);
 }
 .pager__btn.is-gap {
-  border-color: transparent;
   background: transparent;
   cursor: default;
 }
 
 /* ------------------------------------------------------------- footer */
 .footer {
-  margin-top: 48px;
-  padding-top: 22px;
-  border-top: 1px solid var(--border);
+  margin-top: 52px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(var(--on-surface), 0.08);
   text-align: center;
 }
 .footer p {
   margin: 0;
   font-size: 0.8rem;
-  color: var(--text-dim);
+  color: rgba(var(--on-surface), 0.55);
 }
 
-/* ------------------------------------------------------------- modal */
+/* ------------------------------------------------------------- modal (FDialog) */
 .overlay {
   position: fixed;
   inset: 0;
   z-index: 50;
   display: grid;
   place-items: center;
-  padding: 20px;
-  background: rgba(10, 12, 20, 0.55);
-  backdrop-filter: blur(4px);
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.4);
+  overflow: auto;
 }
 .modal {
   position: relative;
   width: min(560px, 100%);
   max-height: 88vh;
   overflow: auto;
-  padding: 26px;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  background: var(--surface);
-  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.5);
+  padding: 28px;
+  border-radius: var(--radius-lg);
+  background: rgb(var(--surface));
+  color: rgba(var(--on-surface), 0.92);
+  box-shadow: var(--shadow-lift);
 }
+/* Vuesax floating close button perched on the top-right corner (FDialog). */
 .modal__close {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: -6px;
+  right: -6px;
   display: grid;
   place-items: center;
   width: 36px;
   height: 36px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--surface-2);
-  color: var(--text-dim);
+  border: 0;
+  border-radius: var(--radius-md);
+  background: rgb(var(--surface));
+  color: rgba(var(--on-surface), 0.7);
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.22);
   cursor: pointer;
+  transition: all 0.25s ease;
 }
 .modal__close:hover {
-  color: var(--text);
+  color: rgba(var(--on-surface), 1);
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.22);
+  transform: translate(-2px, 2px);
 }
 .modal__close svg {
   width: 18px;
@@ -434,17 +460,16 @@ body {
   display: flex;
   align-items: center;
   gap: 18px;
-  margin-bottom: 22px;
+  margin-bottom: 24px;
 }
 .modal__preview {
   display: grid;
   place-items: center;
   width: 84px;
   height: 84px;
-  border-radius: 16px;
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  color: var(--accent);
+  border-radius: var(--radius-md);
+  background: rgb(var(--surface-2));
+  color: rgb(var(--primary));
   flex-shrink: 0;
 }
 .modal__preview svg {
@@ -455,89 +480,120 @@ body {
   margin: 0;
   font-size: 1.25rem;
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
 }
 .modal__meta p {
-  margin: 4px 0 0;
+  margin: 5px 0 0;
   font-size: 0.82rem;
-  color: var(--text-dim);
+  color: rgba(var(--on-surface), 0.55);
 }
 
 .snips {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 .snip__top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 7px;
+  margin-bottom: 8px;
 }
 .snip__label {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 650;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--text-dim);
+  color: rgba(var(--on-surface), 0.5);
 }
 .snip__copy {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   height: 30px;
-  padding: 0 11px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--surface-2);
-  color: var(--text);
+  padding: 0 12px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: rgb(var(--surface-2));
+  color: rgba(var(--on-surface), 0.9);
   font-size: 0.78rem;
   font-weight: 600;
   cursor: pointer;
-  transition: border-color 0.15s, color 0.15s;
+  transition: all 0.18s ease;
 }
 .snip__copy svg {
   width: 15px;
   height: 15px;
 }
 .snip__copy:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+  background: rgba(var(--primary), 0.12);
+  color: rgb(var(--primary));
 }
 .snip__copy.is-copied {
-  border-color: #22c55e;
-  color: #22c55e;
+  background: rgba(var(--success), 0.14);
+  color: rgb(var(--success));
 }
 .snip__code {
   margin: 0;
-  padding: 14px;
-  border-radius: 12px;
-  background: var(--code-bg);
-  color: var(--code-text);
+  padding: 15px 16px;
+  border-radius: var(--radius-md);
+  background: rgb(var(--code-bg));
+  color: #c0caf5;
   font-family: var(--mono);
   font-size: 0.78rem;
-  line-height: 1.55;
+  line-height: 1.6;
   overflow-x: auto;
   white-space: pre-wrap;
   word-break: break-word;
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-/* ------------------------------------------------------------- transitions */
-.fade-enter-active,
+/* ----------------------------------------------- transitions (FDialog bounce) */
+.fade-enter-active {
+  transition: opacity 0.25s ease;
+}
 .fade-leave-active {
-  transition: opacity 0.18s ease;
+  transition: opacity 0.15s ease;
 }
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
 }
-.fade-enter-active .modal,
-.fade-leave-active .modal {
-  transition: transform 0.2s ease;
+.fade-enter-active .modal {
+  animation: fui-rebound 0.4s;
 }
-.fade-enter-from .modal,
+.fade-leave-active .modal {
+  transition: transform 0.15s ease;
+}
 .fade-leave-to .modal {
-  transform: translateY(12px) scale(0.98);
+  transform: scale(0.7);
+}
+
+@keyframes fui-rebound {
+  0% {
+    transform: scale(0.8);
+  }
+  40% {
+    transform: scale(1.08);
+  }
+  80% {
+    transform: scale(0.98);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-enter-active .modal,
+  .fade-leave-active .modal {
+    animation: none;
+    transition: none;
+  }
+  .cell:hover,
+  .ghlink:hover {
+    transform: none;
+  }
 }
 
 @media (max-width: 560px) {
@@ -548,7 +604,7 @@ body {
     display: none;
   }
   .ghlink {
-    padding: 0 12px;
+    padding: 0 13px;
   }
   .grid {
     grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
