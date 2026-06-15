@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <title>FusionUI Icons — Searchable open-source icon set</title>
+    <meta
+      name="description"
+      content="Browse, search and copy 700+ FusionUI Icons as SVG, Vue, JSX or names. Clean, consistent stroke icons for web and mobile."
+    />
+    <meta name="theme-color" content="#0b0d12" />
+    <meta property="og:title" content="FusionUI Icons" />
+    <meta
+      property="og:description"
+      content="Search 700+ open-source FusionUI Icons and copy them straight into your code."
+    />
+    <meta property="og:type" content="website" />
+    <!-- Set theme before paint to avoid a flash of the wrong theme. -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('fui-theme')
+          var theme =
+            stored && stored !== 'system'
+              ? stored
+              : matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light'
+          document.documentElement.dataset.theme = theme
+        } catch (e) {
+          document.documentElement.dataset.theme = 'light'
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
